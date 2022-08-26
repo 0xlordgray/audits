@@ -3,7 +3,7 @@
 ![HappyCamperNFT logo](https://pbs.twimg.com/profile_images/1538621928465997826/jvWWa6Id_400x400.jpg)
 
 <table>
-  <tr><td>Website</td><td>https://www.happycampernft.io/</td></tr>
+  <tr><td>Website</td><td>https://www.happycampernft.io</td></tr>
   <tr><td>Twitter</td><td>https://twitter.com/HappyCamperNFT</td></tr>
   <tr><td>Reviewer</td><td>https://twitter.com/0xlordgray</td></tr>
   <tr><td>Audit date</td><td>26<sup>th</sup> August 2022</td></tr>
@@ -25,7 +25,7 @@ The purpose of this audit is to perform the following:
   <tr><td>Blockchain</td><td>ETH</td></tr>
   <tr><td>Language</td><td>Solidity</td></tr>
   <tr><td>Compiler version</td><td>v0.8.7+commit.e28d00a7</td></tr>
-  <tr><td>Optimisations</td><td>*Yes* with **1000** runs</td></tr>
+  <tr><td>Optimisations</td><td><strong>Yes</strong> with 1000 runs</td></tr>
   <tr><td>License</td><td>MIT</td></tr>
   <tr><td>Name</td><td>HappyCamperNFT</td></tr>
   <tr><td>Symbol</td><td>HAPPY</td></tr>
@@ -54,3 +54,86 @@ The audited contract was deployed to Goerli Testnet network. To make sure no cha
   <tr><td>ERC165.sol</td><td>418fb00887f4354f1fb5ba7216c73ffba7790c7276469c1b8292bd80fcb1d66ca21fdfaae7b566b336aad61d8e8d4413cadb8dc3dc5ea8b97625fcddf004b790</td></tr>
   <tr><td>IERC165.sol</td><td>6a39db2a18be0fe2d5568b0dd8f312c25c2872e671593cea533af37dd75488826fb9e00301d6553ff41d602b51598f6dc5f401a88317eb83685c7529c7781dcc</td></tr>
 </table>
+
+### Severity Table
+
+|  | Severity | Description |
+| --- | --- | --- |
+| 🔴 | High | Malicious code that subverts the intended functionality. Requires immediate attention. |
+| 🟡 | Medium | Non reverting problems that arise when users interact with the contract. Recommended fixes. |
+| 🔵 | Low | Minor issues or failure to follow standard conventions and potential gas optimizations. Optional fixes. |
+
+## Found issues
+
+| Level | Count |
+| --- | --- |
+| 🔴  High | 0 |
+| 🟡  Medium | 1 |
+| 🔵  Low | 1 |
+| Total Issues | 2 |
+
+### Issue 1: The return value of a message call is not checked
+
+External calls return a boolean value. If the callee halts with an exception, 'false' is returned and execution continues in the caller. The caller should check whether an exception happened and react accordingly to avoid unexpected behavior. For example it is often desirable to wrap external calls in require() so the transaction is reverted if the call fails.
+
+```solidity
+    // WITHDRAW
+    function withdraw() public onlyOwner {
+        uint256 contractBalance = address(this).balance;
+        bool success = true;
+
+        (success, ) = payable(0xFA9A358b821f4b4A1B5ac2E0c594bB3f860AFbd8).call{
+            value: (45 * contractBalance) / 1000
+        }("");
+        (success, ) = payable(0x44230C74E406d5690333ba81b198441bCF02CEc8).call{
+            value: (45 * contractBalance) / 1000
+        }("");
+        (success, ) = payable(0xe9b9691Bee2252235D79d4ba874337B018d2A7F1).call{
+            value: (100 * contractBalance) / 1000
+        }("");
+        (success, ) = payable(0x2f0e10a8e21A85c4951fdD909eDCFF6a0B2EbD13).call{
+            value: (486 * contractBalance) / 1000
+        }("");
+        (success, ) = payable(0x09228B35C37Ec6562B0242Ae8A67501e57D61B87).call{
+            value: (324 * contractBalance) / 1000
+        }("");
+        require(success, "Transfer failed");
+    }
+```
+
+<table>
+  <tr><td>🟡 Medium</td><td><a href="https://swcregistry.io/docs/SWC-104">SWC-104</a></td></tr>
+</table>
+
+### Issue 2: A floating pragma is set
+
+The current pragma Solidity directive is "">=0.8.0<0.9.0"". It is recommended to specify a fixed compiler version to ensure that the bytecode produced does not vary between builds. This is especially important if you rely on bytecode-level verification of the code.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.0 <0.9.0;
+```
+
+<table>
+  <tr><td>🔵 Low</td><td><a href="https://swcregistry.io/docs/SWC-103">SWC-103</a></td></tr>
+</table>
+
+## Conclusion
+
+The contract audit found only minor issues, none of the issues are critical and can safely be ignored. 
+
+The withdraw method has predefined addresses where the funds will be withdrawn meaning that the funds cannot be withdrawn to any other address other than the ones provided. Make sure to review they are correct.
+
+| Split | Address |
+|-|-|
+| 4.5% | 0xFA9A358b821f4b4A1B5ac2E0c594bB3f860AFbd8 |
+| 4.5% | 0x44230C74E406d5690333ba81b198441bCF02CEc8 |
+| 10% | 0xe9b9691Bee2252235D79d4ba874337B018d2A7F1 |
+| 48.6% | 0x2f0e10a8e21A85c4951fdD909eDCFF6a0B2EbD13 |
+| 32.4% | 0x09228B35C37Ec6562B0242Ae8A67501e57D61B87 |
+
+Additionally only the smart contract audit was performed, any other application code that is interacting with the smart contract is outside of the scope of this report.
+
+### Disclaimer
+
+This report is for informational use only and does not constitute financial advice. No audit guarantees there will be no remaining bugs or vulnerabilities. Project owners follow our recommendations of their own accord, and auditor is not responsible for any actions taken by project owners. The smart contract security and analysis is based on auditors findings at the time of the audit. The examination of the smart contract's code base was performed following industry best practices at the date of the audit. This report provides no warranties or guarantees on the security of the code. You should not rely solely on this report as a measure of the smart contract's security profile, and performing multiple independent third-party audits is recommended. Smart contract anaylsis was made with best intentions; however, you may not make claims against the auditor given what the report says or does not say. This report and its findings only cover the smart contract's source code, and no applications or code apart from the smart contract were reviewed.
