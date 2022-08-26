@@ -30,6 +30,7 @@ The purpose of this audit is to perform the following:
   <tr><td>Name</td><td>HappyCamperNFT</td></tr>
   <tr><td>Symbol</td><td>HAPPY</td></tr>
   <tr><td>Supply</td><td>5000</td></tr>
+  <tr><td>Max per TX</td><td>5</td></tr>
 </table>
 
 The audited contract was deployed to Goerli Testnet network. To make sure no changes were made to the contract please review sha3 for source files.
@@ -40,20 +41,20 @@ The audited contract was deployed to Goerli Testnet network. To make sure no cha
 
 ### Source files (12)
 
-<table>
-  <tr><td>HappyCamperNFT.sol</td><td>0f5334d92c54841506e5302d33261ebf9e126bd6925817c108a41b0e4397c7424d946c8539045d811911b27d17e779244f953a283fe8b5d59cf891351168bf04</td></tr>
-  <tr><td>Ownable.sol</td><td>b9c836bce7fea85dce4836ef914b0c31b63e502ae292c506c0577519d625225727e920c54d846ebfe2708c7df9a2458ae5d9dda04804ffd7a07de56eff75347a</td></tr>
-  <tr><td>MerkleProof.sol</td><td>c0cccfb34cb09245df0dcb2896a0c979f78914e7fe3e1758a6baec1bce8fc7f2f9f1c0de48eb820caee80a490f458a359bb2bf41419642e2055ca4ae684043e7</td></tr>
-  <tr><td>ERC721A.sol</td><td>4e97f9921945bb4f0ccaf3dc9cd2fc71632539b457e5793a706465d50776bd25b63353145d92208b66533bb940125eeefdfeaf185b697e5e4325f5dc24b31948</td></tr>
-  <tr><td>Context.sol</td><td>a5996e4fd75e4d201f6c567a60660fc3ee8df921bc6d1f05d56fe8cf2bf4126151af1a9348dbb95d6c543bb45031c9edd6a6afc673b62216beecc6c998835d5f</td></tr>
-  <tr><td>IERC721.sol</td><td>c81beb469b34b576f870cc2ce329de37eddf090f431792abb46a1a7a4d104bfb00799e04bec3c897a4eca535e284415d6e042f47371a4115400869b73c9d7e0d</td></tr>
-  <tr><td>IERC721Receiver.sol</td><td>178ae409e8ed7f478baa97bcb7294c11f1445111e1306e3ff04e6f9e93e3592f3ee44168599ac8b4fd78f41162139171ea4dfd50c0dcaa478c03ae6c7952b7eb</td></tr>
-  <tr><td>IERC721Metadata.sol</td><td>f23562c4f39e22171b64879747799b007e1fa0e173dee482824a465bc243937e7967fb6290259ecf2391dfbb978ea1d7daa5a08b7b1521ae80b286012a5002a4</td></tr>
-  <tr><td>Address.sol</td><td>82eabd80857ebda5dc22afd78ed34de718e2f858c65370e879e464ba55b84e1fe40794a53e306cc5b8ccddfd90825695a8317e381f4ac2db9c727980d48bc523</td></tr>
-  <tr><td>Strings.sol</td><td>0d482eb9aee1bf991d8ca3fc81a8bb3e5ff1f5ba66730fec0ecc14db335a1c0f03bbcc2cc48adbf36371a3a20b81ae588c19a2467f005d008c875ee2d47ec974</td></tr>
-  <tr><td>ERC165.sol</td><td>418fb00887f4354f1fb5ba7216c73ffba7790c7276469c1b8292bd80fcb1d66ca21fdfaae7b566b336aad61d8e8d4413cadb8dc3dc5ea8b97625fcddf004b790</td></tr>
-  <tr><td>IERC165.sol</td><td>6a39db2a18be0fe2d5568b0dd8f312c25c2872e671593cea533af37dd75488826fb9e00301d6553ff41d602b51598f6dc5f401a88317eb83685c7529c7781dcc</td></tr>
-</table>
+| File | SHA3 |
+|:-|:-|
+| HappyCamperNFT.sol | 0f5334d92c54841506e5302d33261ebf9e126bd6925817c108a41b0e4397c7424d946c8539045d811911b27d17e779244f953a283fe8b5d59cf891351168bf04 |
+| Ownable.sol | b9c836bce7fea85dce4836ef914b0c31b63e502ae292c506c0577519d625225727e920c54d846ebfe2708c7df9a2458ae5d9dda04804ffd7a07de56eff75347a |
+| MerkleProof.sol | c0cccfb34cb09245df0dcb2896a0c979f78914e7fe3e1758a6baec1bce8fc7f2f9f1c0de48eb820caee80a490f458a359bb2bf41419642e2055ca4ae684043e7 |
+| ERC721A.sol | 4e97f9921945bb4f0ccaf3dc9cd2fc71632539b457e5793a706465d50776bd25b63353145d92208b66533bb940125eeefdfeaf185b697e5e4325f5dc24b31948 |
+| Context.sol | a5996e4fd75e4d201f6c567a60660fc3ee8df921bc6d1f05d56fe8cf2bf4126151af1a9348dbb95d6c543bb45031c9edd6a6afc673b62216beecc6c998835d5f |
+| IERC721.sol | c81beb469b34b576f870cc2ce329de37eddf090f431792abb46a1a7a4d104bfb00799e04bec3c897a4eca535e284415d6e042f47371a4115400869b73c9d7e0d |
+| IERC721Receiver.sol | 178ae409e8ed7f478baa97bcb7294c11f1445111e1306e3ff04e6f9e93e3592f3ee44168599ac8b4fd78f41162139171ea4dfd50c0dcaa478c03ae6c7952b7eb |
+| IERC721Metadata.sol | f23562c4f39e22171b64879747799b007e1fa0e173dee482824a465bc243937e7967fb6290259ecf2391dfbb978ea1d7daa5a08b7b1521ae80b286012a5002a4 |
+| Address.sol | 82eabd80857ebda5dc22afd78ed34de718e2f858c65370e879e464ba55b84e1fe40794a53e306cc5b8ccddfd90825695a8317e381f4ac2db9c727980d48bc523 |
+| Strings.sol | 0d482eb9aee1bf991d8ca3fc81a8bb3e5ff1f5ba66730fec0ecc14db335a1c0f03bbcc2cc48adbf36371a3a20b81ae588c19a2467f005d008c875ee2d47ec974 |
+| ERC165.sol | 418fb00887f4354f1fb5ba7216c73ffba7790c7276469c1b8292bd80fcb1d66ca21fdfaae7b566b336aad61d8e8d4413cadb8dc3dc5ea8b97625fcddf004b790 |
+| IERC165.sol | 6a39db2a18be0fe2d5568b0dd8f312c25c2872e671593cea533af37dd75488826fb9e00301d6553ff41d602b51598f6dc5f401a88317eb83685c7529c7781dcc |
 
 ### Severity Table
 
@@ -120,17 +121,21 @@ pragma solidity >=0.8.0 <0.9.0;
 
 ## Conclusion
 
-The contract audit found only minor issues, none of the issues are critical and can safely be ignored. 
+The contract audit found only minor issues. None of the issues are critical and can safely be ignored. 
 
-The withdraw method has predefined addresses where the funds will be withdrawn meaning that the funds cannot be withdrawn to any other address other than the ones provided. Make sure to review they are correct.
+Max supply, cost per mint (allowlist and public) and max per TX can all be changed by the contract owner at any time. During allow list minting the allowance per address can also be set to a lower value (can also be set to higher if max per TX is changed). Be advised that there is no limit set for the number of tokens minted during allowlist phase, meaning all supply can be minted during this phase (although this could be enforced by lowering max supply).
+
+The withdraw method has predefined splits and addresses where the funds will be withdrawn, meaning that the funds cannot be withdrawn to any other addresses other than the ones provided. Make sure to review they are correct before deploying to mainnet.
 
 | Split | Address |
-|-|-|
+|:-|:-|
 | 4.5% | 0xFA9A358b821f4b4A1B5ac2E0c594bB3f860AFbd8 |
 | 4.5% | 0x44230C74E406d5690333ba81b198441bCF02CEc8 |
 | 10% | 0xe9b9691Bee2252235D79d4ba874337B018d2A7F1 |
 | 48.6% | 0x2f0e10a8e21A85c4951fdD909eDCFF6a0B2EbD13 |
 | 32.4% | 0x09228B35C37Ec6562B0242Ae8A67501e57D61B87 |
+
+Due to the time constraints of this report no actual tests were performed - project owner should test on testnet before launching to make sure everything is working correctly.
 
 Additionally only the smart contract audit was performed, any other application code that is interacting with the smart contract is outside of the scope of this report.
 
