@@ -75,7 +75,7 @@ The audited contract was deployed to Goerli Testnet network. To make sure no cha
 
 ### Issue 1: The return value of a message call is not checked
 
-External calls return a boolean value. If the callee halts with an exception, 'false' is returned and execution continues in the caller. The caller should check whether an exception happened and react accordingly to avoid unexpected behavior. For example it is often desirable to wrap external calls in require() so the transaction is reverted if the call fails.
+External calls return a boolean value. If the callee halts with an exception, `false` is returned and execution continues in the caller. The caller should check whether an exception happened and react accordingly to avoid unexpected behavior. For example it is often desirable to wrap external calls in require() so the transaction is reverted if the call fails.
 
 ```solidity
     // WITHDRAW
@@ -108,7 +108,7 @@ External calls return a boolean value. If the callee halts with an exception, 'f
 
 ### Issue 2: A floating pragma is set
 
-The current pragma Solidity directive is "">=0.8.0<0.9.0"". It is recommended to specify a fixed compiler version to ensure that the bytecode produced does not vary between builds. This is especially important if you rely on bytecode-level verification of the code.
+The current pragma Solidity directive is `">=0.8.0<0.9.0"`. It is recommended to specify a fixed compiler version to ensure that the bytecode produced does not vary between builds. This is especially important if you rely on bytecode-level verification of the code.
 
 ```solidity
 // SPDX-License-Identifier: MIT
